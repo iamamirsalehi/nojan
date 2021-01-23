@@ -1,0 +1,45 @@
+@media screen and (max-width:1300px) {
+    .w3-content {
+        max-width: 870px !important;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .w3-content {
+        max-width: 545px !important;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .w3-content {
+        max-width: 90% !important;
+    }
+    #main {
+        margin-left: 200px !important;
+    }
+    .carosans>ul>li {
+        min-width: 80%;
+    }
+}
+
+@media screen and (max-width:600px) {
+    #main {
+        margin-left: 0px !important;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .box {
+        display: none;
+    }
+    .none {
+        display: block;
+    }
+    .carosans>ul>li {
+        min-width: 100%;
+    }
+    .seemore {
+        height: 30px;
+        margin-top: 7%;
+    }
+}

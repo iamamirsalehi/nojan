@@ -1,0 +1,418 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: auto;
+    overflow-x: hidden !important;
+    width: 100%;
+}
+
+.w3-row-padding img {
+    margin-bottom: 12px
+}
+
+
+/* Set the width of the sidebar to 120px */
+
+.w3-sidebar {
+    width: 120px;
+    background: black;
+}
+
+
+/* Add a left margin to the "page content" that matches the width of the sidebar (120px) */
+
+#main {
+    margin-left: 120px
+}
+
+
+/* Remove margins from "page content" on small screens */
+
+@media only screen and (max-width: 600px) {
+    #main {
+        margin-left: 0
+    }
+}
+
+.black {
+    background-color: black !important;
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0;
+}
+
+.image {
+    width: 100% !important;
+}
+
+.image:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    -ms-transform: scale(1.2);
+    /* IE 9 */
+    -webkit-transform: scale(1.2);
+    /* Safari 3-8 */
+    transform: scale(1.2);
+    transition: 1s;
+    border-radius: 2%;
+}
+
+.center {
+    justify-content: center;
+}
+
+.wraper {
+    width: 55%;
+    border-radius: 10px;
+}
+
+
+/*
+
+Minimal reset
+
+*/
+
+body,
+ul {
+    margin: 0;
+}
+
+
+/*
+
+The core CSS
+
+A minimal layer to make the carousel work.
+
+Custom properties (or "CSS variables") fall back to default values.
+
+Find examples of how to customize the carousel with CSS here:
+
+[Link to docs - coming soon]
+
+*/
+
+.carosans {
+    --position: 0;
+    --sumGaps: calc(var(--gapSize, 0rem) * (var(--numOfSlidesInView, 0)));
+    --distributableSpace: calc(100% - var(--sumGaps));
+    --slideWidth: calc(var(--distributableSpace) / ((var(--numOfSlidesInView, 1) + 1) - (1 - var(--endSlideVis, 0))));
+    --distanceToNext: calc(var(--slideWidth) + var(--gapSize, 0rem));
+    --lastSlideWidth: calc(var(--slideWidth) * (1 - var(--lastSlideVis, 0)));
+    --translateX: calc(-1 * var(--distanceToNext) * var(--position));
+    overflow: hidden;
+}
+
+.carosans>ul {
+    transform: translate3d(var(--translateX), 0, 0);
+    list-style: none;
+    padding-left: 0;
+    display: flex;
+    touch-action: pan-y;
+}
+
+.carosans>ul>li {
+    min-width: 450px;
+    margin-right: var(--gapSize, 0rem);
+    height: 100%;
+}
+
+.carosans>ul>li:last-child {
+    margin-right: 0;
+}
+
+.carosans img {
+    max-width: 100%;
+}
+
+.carosans-transitioning {
+    transition-property: transform;
+    transition-duration: var(--transitionDuration, .3s);
+    transition-timing-function: var(--transitionTiming, ease);
+}
+
+.w3-xlarge {
+    right: 14% !important;
+}
+
+
+/*
+
+Customize values and media queries here.
+
+*/
+
+.carosans {
+    --numOfSlidesInView: 1;
+    --endSlideVis: .3;
+    --gapSize: 1rem;
+    --transitionDuration: .35s;
+    --transitionTiming: ease;
+}
+
+@media (min-width: 50rem) {
+    .carosans {
+        --numOfSlidesInView: 3;
+        --gapSize: 1.5rem;
+    }
+}
+
+@media (min-width: 75rem) {
+    .carosans {
+        --numOfSlidesInView: 4;
+    }
+}
+
+
+/*
+
+Some additional styling to make it look nicer.
+
+*/
+
+.none {
+    display: none;
+}
+
+body {
+    font-family: sans-serif;
+    color: white;
+    background-color: black;
+    min-height: 100vh;
+}
+
+h2 {
+    font-weight: 400;
+    margin: 1rem;
+}
+
+a {
+    text-decoration: none;
+    margin: 0 1rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.carosans {
+    margin-bottom: 3rem;
+}
+
+.carosans li {
+    background: rgb(48, 47, 47);
+    transition: .4s all ease;
+}
+
+.carosans li:hover {
+    filter: contrast(110%) brightness(120%);
+}
+
+.fa-left {
+    margin-left: -20% !important;
+}
+
+.bg-blur {
+    background-color: rgba(0, 0, 0, 0.93)!important;
+}
+
+.wraper {
+    margin: auto;
+    text-align: center;
+}
+
+.seephotoButton {
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    border-bottom: 3px solid red;
+    color: white;
+}
+
+
+}
+.seephotoButton:hover {
+    border-bottom: 2px solid gold;
+}
+.w3-modal-content {
+    width: 550px !important;
+    margin-top: -2% !important;
+    margin-bottom: 2% !important;
+}
+
+/* trick css */
+.box {
+    width: 500px;
+    height: 500px;
+    margin-top: calc(50vh - 250px);
+    margin-left: calc(25% - 250px);
+    background-image: url(images/img7.png);
+    background-position: center;
+    background-size: contain;
+    clip-path: polygon(50% 10%, 90% 50%, 50% 90%, 10% 50%);
+    transition: 1s;
+    margin: 0 auto;
+}
+.box>ul {
+    transform: translate(37.8%, 37.8%) rotate(-45deg);
+    /*    border: 1px solid red;*/
+    
+    width: 57%;
+    height: 57%;
+    list-style: none;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-wrap: wrap;
+}
+.box>ul>li {
+    width: 50%;
+    height: 50%;
+    background-color: rgba(255, 255, 255, 0.17);
+    border: 2px solid rgb(36, 28, 28);
+    transition: .4s
+}
+.box>ul>li:nth-of-type(1) {
+    margin-right: 50%;
+}
+.box>ul>li>a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    transform: rotate(45deg);
+    text-transform: capitalize;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    text-shadow: 0px 0px 5px grey;
+    height: 100%;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.box:hover {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+}
+.box>ul>li:hover {
+    background-color: rgba(255, 255, 255, 0.17)
+}
+
+/* attachment css */
+#attachment {
+    position: relative;
+    background: url(../Nojan\ Namdar/images/img8.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 500px;
+}
+#attachment div.overlay {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .6);
+    display: flex;
+}
+#attachment .textin {
+    text-align: center;
+    margin: auto;
+}
+#attachment .textin h2 {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+#attachment .textin p {
+    font-size: 28px;
+    font-family: fantasy;
+    color: yellow;
+}
+.title-section {
+    border-bottom: 3px solid red;
+}
+#attachment-one {
+    position: relative;
+    background: url(../Nojan\ Namdar/images/img6.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%;
+    height: 500px;
+}
+#attachment-one div.overlay-one {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .6);
+    display: flex;
+}
+#attachment-one .textin-one {
+    text-align: center;
+    margin: auto;
+}
+#attachment-one .textin-one h2 {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+#attachment-one .textin-one p {
+    font-size: 28px;
+    font-family: fantasy;
+    color: yellow;
+}
+.seemore {
+    width: 100px;
+    height: 60px;
+    border: none;
+    background-color: rgb(56, 52, 52);
+    color: white;
+    margin: 8px;
+    border-radius: 3px;
+}
+.seemore:hover {
+    border: 2px solid red;
+    transition: 2ms;
+}
+.bg-pack {
+    background: url(../Nojan\ Namdar/images/img6.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 240px;
+}
+.bg-pack2 {
+    background: url(../Nojan\ Namdar/images/img3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 240px;
+}

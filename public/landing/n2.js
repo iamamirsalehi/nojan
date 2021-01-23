@@ -1,0 +1,195 @@
+/*
+
+You can find this project on github:
+
+https://github.com/andrasna/carosans
+
+It is a work in progress, not ready for production.
+
+All feedback is appreciated!
+
+*/
+
+! function(t, i) { "object" == typeof exports && "object" == typeof module ? module.exports = i() : "function" == typeof define && define.amd ? define("Carosans", [], i) : "object" == typeof exports ? exports.Carosans = i() : t.Carosans = i() }(this, (function() {
+    return (() => {
+        "use strict";
+        var t = {
+                817: (t, i, e) => {
+                    e.d(i, { default: () => s });
+                    const n = "carosans-transitioning";
+
+                    function o(t, i, e) { t.style.setProperty(i, e) }
+
+                    function r(t) { if ("number" != typeof t) throw new Error("Expected a number, instead the input was: " + t) }
+                    const s = function(t = {}) {
+                        const { selector: i = ".carosans", minMoveToChangePosition: e = 100, cursor: s, freeMode: a = !1, explicitPrepare: d = !1 } = t;
+                        r(e);
+                        const c = { pointerXOrigin: 0, restingPosition: 0, distanceToNext: 400, positionLimitStart: 0, positionLimitEnd: 3 },
+                            u = function(t) { const i = document.querySelector(t); if (null === i) throw new Error("Selector did not match."); return {get container() { return i }, get slides() { return i.querySelector("ul:first-child") }, get firstSlide() { return i.querySelector("li:first-child") }, get lastSlide() { return i.querySelector("li:last-child") }, getNthSlide: (t = 1) => i.querySelector(`li:nth-child(${t})`) } }(i);
+
+                        function l(t) {
+                            switch (s) {
+                                case "grab":
+                                    u.container.style.cursor = !0 === t ? "grabbing" : "grab"
+                            }
+                        }
+
+                        function p(t) { return t - c.pointerXOrigin }
+
+                        function f(t) { const i = -p(t) / c.distanceToNext + c.restingPosition; return i < c.positionLimitStart ? .3 * i : i > c.positionLimitEnd ? c.positionLimitEnd + .3 * (i - c.positionLimitEnd) : i }
+
+                        function m(t, i = !0) {!0 === i && u.slides.classList.add(n), o(u.container, "--position", t), c.restingPosition = t }
+
+                        function g(t) { l(!0), o(u.container, "--position", f(t.clientX)) }
+
+                        function h(t) {
+                            l(!1), m(function(t) {
+                                const i = f(t),
+                                    n = p(t),
+                                    o = e;
+                                if (!0 === a && n < 0) return Math.min(c.positionLimitEnd, i + .05);
+                                if (!0 === a && n > 0) return Math.max(0, i - .05);
+                                if (Math.abs(n) < o) return c.restingPosition;
+                                if (i < c.positionLimitStart) return c.positionLimitStart;
+                                if (i > c.positionLimitEnd) return c.positionLimitEnd;
+                                if (n < 0) return Math.min(c.positionLimitEnd, Math.ceil(i));
+                                if (n > 0) return Math.floor(i);
+                                throw new Error("Function should have already returned a number at this point.")
+                            }(t.clientX)), document.removeEventListener("pointermove", g), document.removeEventListener("pointerup", h)
+                        }
+
+                        function E() { l(!1), c.distanceToNext = u.getNthSlide(2).getBoundingClientRect().left - u.firstSlide.getBoundingClientRect().left, c.positionLimitEnd = (Math.abs(u.firstSlide.getBoundingClientRect().left) + u.lastSlide.getBoundingClientRect().right - u.container.clientWidth) / Math.max(1, c.distanceToNext) }
+                        return window.addEventListener("resize", (function() { E(), c.restingPosition > c.positionLimitEnd && m(c.positionLimitEnd) })), u.container.addEventListener("pointerdown", (function(t) { t.preventDefault(), E(), c.pointerXOrigin = t.clientX, document.addEventListener("pointermove", g), document.addEventListener("pointerup", h) })), u.slides.addEventListener("transitionend", (function(t) { t.currentTarget.classList.remove(n) })), !1 === d && E(), { pos: () => c.restingPosition, isEnd: () => c.restingPosition === c.positionLimitEnd, isStart: () => 0 === c.restingPosition, next(t = 1, i = !0, e = !0) { return r(t), !0 === i && this.isEnd() ? m(0, !!e) : m(Math.min(c.positionLimitEnd, c.restingPosition + t), !!e), this }, prev(t = 1, i = !0, e = !0) { return r(t), !0 === i && this.isStart() ? m(c.positionLimitEnd, !!e) : m(Math.max(0, c.restingPosition - t), !!e), this }, to(t = 0, i = !0) { return r(t), m(Math.min(c.positionLimitEnd, Math.max(0, t)), !!i), this }, length: () => u.slides.getElementsByTagName("li").length, countInView() { return Number((t = u.container, "--numOfSlidesInView", window.getComputedStyle(t).getPropertyValue("--numOfSlidesInView"))); var t }, countSteps() { return this.length() - this.countInView() }, prep() { E() }, getContainer: () => u.container, getSlides: () => u.slides, getFirst: () => u.firstSlide, getNth: t => u.getNthSlide(t), getLast: () => u.firstSlide }
+                    }
+                }
+            },
+            i = {};
+
+        function e(n) { if (i[n]) return i[n].exports; var o = i[n] = { exports: {} }; return t[n](o, o.exports, e), o.exports }
+        return e.d = (t, i) => { for (var n in i) e.o(i, n) && !e.o(t, n) && Object.defineProperty(t, n, { enumerable: !0, get: i[n] }) }, e.o = (t, i) => Object.prototype.hasOwnProperty.call(t, i), e(817)
+    })().default
+}));
+
+Carosans({
+    selector: '.one',
+    cursor: 'grab',
+})
+
+Carosans({
+        selector: '.two',
+        freeMode: true,
+    })
+    /*
+
+    You can find this project on github:
+
+ 
+    It is a work in progress, not ready for production.
+
+    All feedback is appreciated!
+
+    */
+
+! function(t, i) { "object" == typeof exports && "object" == typeof module ? module.exports = i() : "function" == typeof define && define.amd ? define("Carosans", [], i) : "object" == typeof exports ? exports.Carosans = i() : t.Carosans = i() }(this, (function() {
+    return (() => {
+        "use strict";
+        var t = {
+                817: (t, i, e) => {
+                    e.d(i, { default: () => s });
+                    const n = "carosans-transitioning";
+
+                    function o(t, i, e) { t.style.setProperty(i, e) }
+
+                    function r(t) { if ("number" != typeof t) throw new Error("Expected a number, instead the input was: " + t) }
+                    const s = function(t = {}) {
+                        const { selector: i = ".carosans", minMoveToChangePosition: e = 100, cursor: s, freeMode: a = !1, explicitPrepare: d = !1 } = t;
+                        r(e);
+                        const c = { pointerXOrigin: 0, restingPosition: 0, distanceToNext: 400, positionLimitStart: 0, positionLimitEnd: 3 },
+                            u = function(t) { const i = document.querySelector(t); if (null === i) throw new Error("Selector did not match."); return {get container() { return i }, get slides() { return i.querySelector("ul:first-child") }, get firstSlide() { return i.querySelector("li:first-child") }, get lastSlide() { return i.querySelector("li:last-child") }, getNthSlide: (t = 1) => i.querySelector(`li:nth-child(${t})`) } }(i);
+
+                        function l(t) {
+                            switch (s) {
+                                case "grab":
+                                    u.container.style.cursor = !0 === t ? "grabbing" : "grab"
+                            }
+                        }
+
+                        function p(t) { return t - c.pointerXOrigin }
+
+                        function f(t) { const i = -p(t) / c.distanceToNext + c.restingPosition; return i < c.positionLimitStart ? .3 * i : i > c.positionLimitEnd ? c.positionLimitEnd + .3 * (i - c.positionLimitEnd) : i }
+
+                        function m(t, i = !0) {!0 === i && u.slides.classList.add(n), o(u.container, "--position", t), c.restingPosition = t }
+
+                        function g(t) { l(!0), o(u.container, "--position", f(t.clientX)) }
+
+                        function h(t) {
+                            l(!1), m(function(t) {
+                                const i = f(t),
+                                    n = p(t),
+                                    o = e;
+                                if (!0 === a && n < 0) return Math.min(c.positionLimitEnd, i + .05);
+                                if (!0 === a && n > 0) return Math.max(0, i - .05);
+                                if (Math.abs(n) < o) return c.restingPosition;
+                                if (i < c.positionLimitStart) return c.positionLimitStart;
+                                if (i > c.positionLimitEnd) return c.positionLimitEnd;
+                                if (n < 0) return Math.min(c.positionLimitEnd, Math.ceil(i));
+                                if (n > 0) return Math.floor(i);
+                                throw new Error("Function should have already returned a number at this point.")
+                            }(t.clientX)), document.removeEventListener("pointermove", g), document.removeEventListener("pointerup", h)
+                        }
+
+                        function E() { l(!1), c.distanceToNext = u.getNthSlide(2).getBoundingClientRect().left - u.firstSlide.getBoundingClientRect().left, c.positionLimitEnd = (Math.abs(u.firstSlide.getBoundingClientRect().left) + u.lastSlide.getBoundingClientRect().right - u.container.clientWidth) / Math.max(1, c.distanceToNext) }
+                        return window.addEventListener("resize", (function() { E(), c.restingPosition > c.positionLimitEnd && m(c.positionLimitEnd) })), u.container.addEventListener("pointerdown", (function(t) { t.preventDefault(), E(), c.pointerXOrigin = t.clientX, document.addEventListener("pointermove", g), document.addEventListener("pointerup", h) })), u.slides.addEventListener("transitionend", (function(t) { t.currentTarget.classList.remove(n) })), !1 === d && E(), { pos: () => c.restingPosition, isEnd: () => c.restingPosition === c.positionLimitEnd, isStart: () => 0 === c.restingPosition, next(t = 1, i = !0, e = !0) { return r(t), !0 === i && this.isEnd() ? m(0, !!e) : m(Math.min(c.positionLimitEnd, c.restingPosition + t), !!e), this }, prev(t = 1, i = !0, e = !0) { return r(t), !0 === i && this.isStart() ? m(c.positionLimitEnd, !!e) : m(Math.max(0, c.restingPosition - t), !!e), this }, to(t = 0, i = !0) { return r(t), m(Math.min(c.positionLimitEnd, Math.max(0, t)), !!i), this }, length: () => u.slides.getElementsByTagName("li").length, countInView() { return Number((t = u.container, "--numOfSlidesInView", window.getComputedStyle(t).getPropertyValue("--numOfSlidesInView"))); var t }, countSteps() { return this.length() - this.countInView() }, prep() { E() }, getContainer: () => u.container, getSlides: () => u.slides, getFirst: () => u.firstSlide, getNth: t => u.getNthSlide(t), getLast: () => u.firstSlide }
+                    }
+                }
+            },
+            i = {};
+
+        function e(n) { if (i[n]) return i[n].exports; var o = i[n] = { exports: {} }; return t[n](o, o.exports, e), o.exports }
+        return e.d = (t, i) => { for (var n in i) e.o(i, n) && !e.o(t, n) && Object.defineProperty(t, n, { enumerable: !0, get: i[n] }) }, e.o = (t, i) => Object.prototype.hasOwnProperty.call(t, i), e(817)
+    })().default
+}));
+
+Carosans({
+    selector: '.one',
+    cursor: 'grab',
+})
+
+Carosans({
+    selector: '.two',
+    freeMode: true,
+})
+
+
+
+/*show full size image modal*/
+
+
+function onClick(element) {
+    document.getElementById("img01").src = element.src;
+    document.getElementById("modal01").style.display = "block";
+    document.getElementById("body").style.backgroundColor = "black";
+
+
+}
+
+
+
+
+var animateButton = function(e) {
+
+    e.preventDefault;
+    //reset animation
+    e.target.classList.remove('animate');
+
+    e.target.classList.add('animate');
+    setTimeout(function() {
+        e.target.classList.remove('animate');
+    }, 700);
+};
+
+var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+for (var i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
+}
